@@ -45,6 +45,9 @@ function newTextEditor(array $operations): string
                 break;
         }
     }
+    if ($delete > 0) {
+        $output = substr($output, 0, strlen($output) - $delete);
+    }
     if ($undo > 0) {
         $output = $result[$index - $undo] ?? '';
     }
@@ -52,4 +55,7 @@ function newTextEditor(array $operations): string
 }
 
 echo newTextEditor(['INSERT Code', 'UNDO','INSERT is', 'INSERT perfect', 'COPY 3', 'PASTE', 'PASTE', 'UNDO', 'UNDO', 'UNDO']);
+echo " ---- ";
 echo newTextEditor(['UNDO', 'INSERT Code', 'UNDO', 'UNDO','INSERT is', 'DELETE', 'INSERT perfect', 'DELETE', 'COPY 3', 'PASTE', 'PASTE', 'UNDO','UNDO','UNDO']);
+echo " ---- ";
+echo newTextEditor(['UNDO', 'INSERT Code', 'UNDO', 'UNDO','INSERT is', 'DELETE', 'INSERT perfect', 'DELETE', 'COPY 3', 'PASTE', 'PASTE', 'UNDO','UNDO','UNDO', 'DELETE', 'DELETE', 'DELETE', 'UNDO', 'UNDO']);
